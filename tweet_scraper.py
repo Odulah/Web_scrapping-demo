@@ -1,4 +1,3 @@
-
 import selenium
 from selenium import webdriver
 from selenium.webdriver.common.by import By
@@ -6,33 +5,36 @@ from selenium.webdriver.common.keys import Keys
 from time import sleep
 from selenium.webdriver.remote.errorhandler import StaleElementReferenceException
 from webdriver_manager.chrome import ChromeDriverManager
+from selenium import webdriver
+from selenium.webdriver.chrome.service import Service
+service = Service()
+options = webdriver.ChromeOptions()
+driver = webdriver.Chrome(service=service, options=options)
 
-driver = webdriver.Chrome(ChromeDriverManager().install())
 
 driver.get("https://twitter.com/login")
 
-
 subject = "(food OR  plant  OR walk OR watch OR funny OR lovely OR good  ) lang:en  until:2023-04-17"
-
 
 # Setup the log in
 sleep(3)
-username = driver.find_element(By.XPATH,"//input[@name='text']")
-username.send_keys("EMAil")
+username = driver.find_element(By.XPATH, "//input[@name='text']")
+username.send_keys("EMAIl")
 
-next_button = driver.find_element(By.XPATH,"//span[contains(text(),'Next')]")
+next_button = driver.find_element(By.XPATH, "//span[contains(text(),'Next')]")
 next_button.click()
 
 sleep(3)
-username = driver.find_element(By.XPATH,"//input[@name='text']")
-username.send_keys("PHONE-NUMBER")
-next_button = driver.find_element(By.XPATH,"//span[contains(text(),'Next')]")
+username = driver.find_element(By.XPATH, "//input[@name='text']")
+username.send_keys("Phone number")
+next_button = driver.find_element(By.XPATH, "//span[contains text(),'Next')]")
 next_button.click()
 sleep(3)
 
-password = driver.find_element(By.XPATH,"//input[@name='password']")
-password.send_keys('PASSWORD')
+password = driver.find_element(By.XPATH, "//input[@name='password']")
+password.send_keys('Password*')
 sleep(3)
+
 
 log_in = driver.find_element(By.XPATH,"//span[contains(text(),'Log in')]")
 log_in.click()
@@ -88,4 +90,4 @@ with open("tweets.csv","w",encoding="UTF-8") as file :
     for a in result :
         file.write(f"{adet} - {a}\n")
         adet += 1
-print("The tweets have been successfully saved in the tweets.txt file")")
+print("The tweets have been successfully saved in the tweets.txt file")
